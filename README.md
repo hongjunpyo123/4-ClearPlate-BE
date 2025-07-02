@@ -41,6 +41,53 @@ ex)
 
 # [3] 프로젝트 구조
 ```
+src
+    ├── main
+    │   ├── java
+    │   │   └── com
+    │   │       └── qithon
+    │   │           └── clearplate
+    │   │               ├── ClearplateApplication.java
+    │   │               ├── domain
+    │   │               │   └── user
+    │   │               │       ├── dto
+    │   │               │       │   ├── request
+    │   │               │       │   │   └── UserRequest.java
+    │   │               │       │   └── response
+    │   │               │       │       └── UserResponse.java
+    │   │               │       ├── entity
+    │   │               │       │   └── User.java
+    │   │               │       └── repository
+    │   │               │           └── UserRepository.java
+    │   │               ├── global
+    │   │               │   ├── common
+    │   │               │   │   └── dto
+    │   │               │   │       └── response
+    │   │               │   │           └── ResponseDTO.java
+    │   │               │   ├── config
+    │   │               │   │   ├── SwaggerConfig.java
+    │   │               │   │   └── WebConfig.java
+    │   │               │   └── security
+    │   │               │       └── SecurityConfig.java
+    │   │               └── infra
+    │   │                   └── gemini
+    │   │                       ├── GeminiClient.java
+    │   │                       └── dto
+    │   │                           ├── request
+    │   │                           │   └── GeminiRequest.java
+    │   │                           └── response
+    │   │                               └── GeminiResponse.java
+    │   └── resources
+    │       ├── application.yml
+    │       ├── application.yml.sample
+    │       ├── static
+    │       └── templates
+    └── test
+        └── java
+            └── com
+                └── qithon
+                    └── clearplate
+                        └── ClearplateApplicationTests.java
 
 ```
 
