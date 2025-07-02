@@ -1,4 +1,4 @@
-package com.qithon.clearplate.global.config;
+package com.qithon.clearplate.global.security;
 
 
 import lombok.RequiredArgsConstructor;
