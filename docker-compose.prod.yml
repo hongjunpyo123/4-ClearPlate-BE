@@ -7,17 +7,17 @@ services:
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql_person:3306/${MYSQL_DATABASE}?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql_person:clp/${MYSQL_DATABASE}?useSSL=false&allowPublicKeyRetrieval=true
       SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
       SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
     depends_on:
       mysql:
         condition: service_healthy
     networks:
-      - person
+      - clp
 
   mysql:
-    container_name: mysql_person
+    container_name: mysql_clp
     image: mysql:latest
     ports:
       - "3306:3306"
@@ -30,7 +30,7 @@ services:
       timeout: 5s
       retries: 3
     networks:
-      - person
+      - clp
 
 networks:
-  person:
+  clp:
