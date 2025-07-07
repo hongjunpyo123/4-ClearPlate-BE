@@ -3,7 +3,7 @@ version: '3.8'
 services:
   application:
     container_name: backend
-    image: kimhongseok/springboot-app:latest
+    image: kimhongseok/springboot-clp:latest
     ports:
       - "8080:8080"
     environment:
