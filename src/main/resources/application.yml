@@ -1,17 +1,17 @@
 spring:
-  application:
-    name: clearplate
-
-  #mysql
+  config:
+    import: optional:file:.env[.properties]
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3307/clp?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
-    username: root
-    password: 1234
-
+    #url: jdbc:mysql://localhost:3306/jett2 #(로컬)
+    url: jdbc:mysql://mysql_person:3306/${MYSQL_DATABASE}?useSSL=false&allowPublicKeyRetrieval=true #(도커)
+    username: ${MYSQL_USERNAME}
+    password: ${MYSQL_PASSWORD}
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
+    properties:
+      hibernate.dialect: org.hibernate.dialect.MySQLDialect
 
 # openAPI, swagger
 springdoc:
