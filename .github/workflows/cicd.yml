@@ -65,6 +65,7 @@ jobs:
             echo "Deploying version: $DOCKER_IMAGE_TAG"
             cd /home/ubuntu
             sudo docker compose -f docker-compose.prod.yml pull 
+            sudo docker image prune -af
             sudo docker compose -f docker-compose.prod.yml down || true 
             sudo docker compose -f docker-compose.prod.yml up -d 
             echo "Deployment complete."

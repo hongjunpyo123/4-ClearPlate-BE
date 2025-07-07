@@ -12,7 +12,7 @@ public class SwaggerConfig {
   public OpenAPI openAPI() {
     return new OpenAPI()
         .info(new Info()
-            .title("ClearPlate API")
+            .title("ClearPlate API Documentation")
             .description("9ithon ClearPlate Project API Documentation")
             .version("1.0.0"));
   }
