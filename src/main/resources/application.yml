@@ -3,8 +3,8 @@ spring:
     import: optional:file:.env[.properties]
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    #url: jdbc:mysql://localhost:3306/jett2 #(로컬)
-    url: jdbc:mysql://mysql_person:3306/${MYSQL_DATABASE}?useSSL=false&allowPublicKeyRetrieval=true #(도커)
+    #url: jdbc:mysql://localhost:3306/clp #(로컬)
+    url: jdbc:mysql://mysql:3306/${MYSQL_DATABASE}?useSSL=false&allowPublicKeyRetrieval=true #(도커)
     username: ${MYSQL_USERNAME}
     password: ${MYSQL_PASSWORD}
   jpa:
