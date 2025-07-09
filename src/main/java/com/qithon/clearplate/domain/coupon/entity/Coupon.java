@@ -1,5 +1,6 @@
 package com.qithon.clearplate.domain.coupon.entity;
 
+import com.qithon.clearplate.domain.coupon.dto.request.RegisterCouponRequest;
 import com.qithon.clearplate.domain.user.entity.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -66,22 +67,41 @@ public class Coupon {
 
   /**
    * 쿠폰을 생성하는 정적 팩토리 메서드입니다.
+   * @param couponTitle 쿠폰 제목
    * @param couponPrice 쿠폰 가격
    * @param couponDiscountValue 쿠폰 할인 금액
    * @param expiresAt 쿠폰 만료일
    * @param couponDescription 쿠폰 설명
-   * @param user 쿠폰을 소유한 사용자
    * @return 생성된 Coupon 객체
    */
   public static Coupon createCouponOf(String couponTitle, Integer couponPrice, Integer couponDiscountValue,
-      LocalDateTime expiresAt, String couponDescription, User user) {
+      LocalDateTime expiresAt, String couponDescription) {
     return Coupon.builder()
+        .couponTitle(couponTitle)
         .couponCode(getCouponCode())
         .couponDescription(couponDescription)
         .couponPrice(couponPrice)
         .couponDiscountValue(couponDiscountValue)
         .expiresAt(expiresAt)
-        .user(user)
+        .user(null)
+        .build();
+  }
+
+
+  /**
+   * 쿠폰 등록 요청 DTO를 인자로 받아 Coupon 객체를 생성합니다.
+   * @param requestDTO 쿠폰 등록 요청 DTO 입니다.
+   * @return 생성된 Coupon 객체
+   */
+  public static Coupon from(RegisterCouponRequest requestDTO) {
+    return Coupon.builder()
+        .couponTitle(requestDTO.getCouponTitle())
+        .couponCode(getCouponCode())
+        .couponDescription(requestDTO.getCouponDescription())
+        .couponPrice(requestDTO.getCouponPrice())
+        .couponDiscountValue(requestDTO.getCouponDiscountValue())
+        .expiresAt(requestDTO.getExpiresAt())
+        .user(null)
         .build();
   }
 
