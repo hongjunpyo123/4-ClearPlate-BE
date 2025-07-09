@@ -50,7 +50,7 @@ public class User {
     this.nickname = nickname;
     this.cpPoint = cpPoint;
     this.role = role;
-    this.coupons = coupons;
+    this.coupons = null;
   }
 
   /**
@@ -60,15 +60,12 @@ public class User {
    * @param cpPoint  서비스에서 사용되는 포인트 입니다
    * @return 생성된 User 객체
    */
-  //TODO: 쿠폰 연관관계 매핑 후 메서드 인자로 쿠폰 객체를 추가해야함.
-  public static User createStandardUserOf(String socialEmail, String nickname, Integer cpPoint,
-      List<Coupon> coupons) {
+  public static User createStandardUserOf(String socialEmail, String nickname, Integer cpPoint) {
     return User.builder()
         .socialEmail(socialEmail)
         .nickname(nickname)
         .cpPoint(cpPoint)
         .role(Role.ROLE_USER)
-        .coupons(coupons)
         .build();
   }
 
@@ -87,7 +84,6 @@ public class User {
         .nickname(nickname)
         .cpPoint(cpPoint)
         .role(Role.ROLE_OWNER)
-        .coupons(null)
         .build();
   }
 

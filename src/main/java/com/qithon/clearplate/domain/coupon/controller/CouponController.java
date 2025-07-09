@@ -10,7 +10,9 @@ import java.time.LocalDateTime;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,7 +25,7 @@ public class CouponController {
 
 
   @PostMapping
-  public ResponseEntity<?> registerCoupon(RegisterCouponRequest requestDTO) {
+  public ResponseEntity<?> registerCoupon(@RequestBody RegisterCouponRequest requestDTO) {
     try {
       RegisterCouponResponse response = registerCouponService.registerCoupon(requestDTO);
       return ResponseEntity.ok().body(ResponseDTO.response(response));
@@ -32,6 +34,7 @@ public class CouponController {
           .body(ResponseDTO.response(HttpStatus.BAD_REQUEST, "쿠폰 등록에 실패하였습니다.", null));
     }
   }
+
 
 
 
