@@ -1,5 +1,7 @@
 package com.qithon.clearplate.domain.coupon.controller;
 
+import com.qithon.clearplate.domain.coupon.dto.request.RegisterCouponRequest;
+import com.qithon.clearplate.domain.coupon.dto.response.RegisterCouponResponse;
 import java.time.LocalDateTime;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class CouponController {
 
   @PostMapping
-  public
+  public RegisterCouponResponse registerCoupon(RegisterCouponRequest request) {
+
+  }
 
 
 

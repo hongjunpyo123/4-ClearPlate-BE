@@ -7,4 +7,6 @@ import lombok.Setter;
 @Setter
 public class RegisterCouponResponse {
 
+  private String couponTitle;
+  private Integer couponPrice; //쿠폰 가격(교환시 소모되는 포인트임)
 }
