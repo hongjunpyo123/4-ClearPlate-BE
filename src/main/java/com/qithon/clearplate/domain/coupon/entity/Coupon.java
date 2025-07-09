@@ -26,6 +26,10 @@ public class Coupon {
   @Id @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
   private Long id;
 
+  @Column(length = 10, nullable = false)
+  private String couponTitle;
+
+
   @Column(nullable = false, unique = true)
   private String couponCode;
 
@@ -48,8 +52,9 @@ public class Coupon {
   private User user;
 
   @Builder
-  private Coupon(String couponCode, String couponDescription, Integer couponPrice
+  private Coupon(String couponTitle, String couponCode, String couponDescription, Integer couponPrice
   , Integer couponDiscountValue, LocalDateTime expiresAt, User user) {
+    this.couponTitle = couponTitle;
     this.couponCode = couponCode;
     this.couponDescription = couponDescription;
     this.couponPrice = couponPrice;
@@ -68,7 +73,7 @@ public class Coupon {
    * @param user 쿠폰을 소유한 사용자
    * @return 생성된 Coupon 객체
    */
-  public static Coupon createCouponOf(Integer couponPrice, Integer couponDiscountValue,
+  public static Coupon createCouponOf(String couponTitle, Integer couponPrice, Integer couponDiscountValue,
       LocalDateTime expiresAt, String couponDescription, User user) {
     return Coupon.builder()
         .couponCode(getCouponCode())
