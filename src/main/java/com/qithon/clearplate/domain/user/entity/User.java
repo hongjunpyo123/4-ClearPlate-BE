@@ -1,5 +1,6 @@
 package com.qithon.clearplate.domain.user.entity;
 
+import com.qithon.clearplate.domain.coupon.entity.Coupon;
 import com.qithon.clearplate.global.security.core.Role;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,7 +8,10 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -32,18 +36,21 @@ public class User {
   @Column(nullable = false)
   private Integer cpPoint;
 
-  //TODO: 쿠폰 연관관계 매핑 필요
-  //private Coupon coupon;
 
   @Enumerated(EnumType.STRING) // admin, user, owner
   private Role role;
 
+  @OneToMany(mappedBy = "user")
+  private List<Coupon> coupons = new ArrayList<>();
+
   @Builder
-  private User(String socialEmail, String nickname, Integer cpPoint, Role role) {
+  private User(String socialEmail, String nickname, Integer cpPoint, Role role,
+      List<Coupon> coupons) {
     this.socialEmail = socialEmail;
     this.nickname = nickname;
     this.cpPoint = cpPoint;
     this.role = role;
+    this.coupons = coupons;
   }
 
   /**
@@ -54,12 +61,14 @@ public class User {
    * @return 생성된 User 객체
    */
   //TODO: 쿠폰 연관관계 매핑 후 메서드 인자로 쿠폰 객체를 추가해야함.
-  public static User createStandardUserOf(String socialEmail, String nickname, Integer cpPoint) {
+  public static User createStandardUserOf(String socialEmail, String nickname, Integer cpPoint,
+      List<Coupon> coupons) {
     return User.builder()
         .socialEmail(socialEmail)
         .nickname(nickname)
         .cpPoint(cpPoint)
         .role(Role.ROLE_USER)
+        .coupons(coupons)
         .build();
   }
 
@@ -78,6 +87,7 @@ public class User {
         .nickname(nickname)
         .cpPoint(cpPoint)
         .role(Role.ROLE_OWNER)
+        .coupons(null)
         .build();
   }
 
@@ -96,6 +106,7 @@ public class User {
         .nickname(nickname)
         .cpPoint(cpPoint)
         .role(Role.ROLE_ADMIN)
+        .coupons(null)
         .build();
 
   }

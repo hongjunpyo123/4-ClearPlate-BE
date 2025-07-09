@@ -1,10 +1,13 @@
 package com.qithon.clearplate.domain.coupon.entity;
 
+import com.qithon.clearplate.domain.user.entity.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import lombok.AccessLevel;
@@ -40,13 +43,18 @@ public class Coupon {
 
   private LocalDateTime usedAt;       // 사용일 (null이면 미사용)
 
+  @ManyToOne(fetch = jakarta.persistence.FetchType.LAZY)
+  @JoinColumn(name = "user_id")
+  private User user;
+
   @Builder
   private Coupon(String couponCode, String couponDescription, Integer couponPrice
-  , Integer couponDiscountValue, LocalDateTime expiresAt) {
+  , Integer couponDiscountValue, LocalDateTime expiresAt, User user) {
     this.couponCode = couponCode;
     this.couponDescription = couponDescription;
     this.couponPrice = couponPrice;
     this.couponDiscountValue = couponDiscountValue;
+    this.user = user;
     this.expiresAt = expiresAt;
     this.usedAt = null;
   }
@@ -57,16 +65,18 @@ public class Coupon {
    * @param couponDiscountValue 쿠폰 할인 금액
    * @param expiresAt 쿠폰 만료일
    * @param couponDescription 쿠폰 설명
+   * @param user 쿠폰을 소유한 사용자
    * @return 생성된 Coupon 객체
    */
-  public static Coupon createOf(Integer couponPrice, Integer couponDiscountValue,
-      LocalDateTime expiresAt, String couponDescription) {
+  public static Coupon createCouponOf(Integer couponPrice, Integer couponDiscountValue,
+      LocalDateTime expiresAt, String couponDescription, User user) {
     return Coupon.builder()
         .couponCode(getCouponCode())
         .couponDescription(couponDescription)
         .couponPrice(couponPrice)
         .couponDiscountValue(couponDiscountValue)
         .expiresAt(expiresAt)
+        .user(user)
         .build();
   }
 
