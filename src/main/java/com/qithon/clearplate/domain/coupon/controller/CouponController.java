@@ -35,6 +35,15 @@ public class CouponController {
     }
   }
 
+  @GetMapping("/all")
+  public ResponseEntity<?> getAllCoupons() {
+    try {
+
+    } catch (RuntimeException e) {
+
+    }
+  }
+
 
 
 
