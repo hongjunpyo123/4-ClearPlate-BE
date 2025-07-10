@@ -9,6 +9,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
@@ -82,6 +83,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
                 + ":" + url + "]" + "(denied)");
       }
 
+
       filterChain.doFilter(request, response);
 
     } catch (UsernameNotFoundException e) {
@@ -131,6 +133,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
     //토큰에서 사용자 ID를 추출합니다.
     Long userId = jwtTokenProvider.getUserIdFromToken(token);
+
 
     //사용자 ID로 사용자 인증 정보를 생성합니다.
     UserDetails userDetails = customUserDetailsService.loadUserById(userId);

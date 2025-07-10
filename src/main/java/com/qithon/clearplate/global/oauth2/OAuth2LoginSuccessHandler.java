@@ -1,10 +1,12 @@
 package com.qithon.clearplate.global.oauth2;
 
 
+import com.qithon.clearplate.global.security.jwt.JwtTokenProvider;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
@@ -19,12 +21,17 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
 
+    private final JwtTokenProvider jwtTokenProvider;
+
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request,
                                         HttpServletResponse response,
                                         Authentication authentication)
             throws IOException, ServletException {
+
+        // HttpSession 객체를 생성합니다.
+        HttpSession session = request.getSession();
 
 
         DefaultOAuth2User oAuth2User = (DefaultOAuth2User) authentication.getPrincipal();
@@ -33,6 +40,9 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
 
 
         String refreshToken = (String) attributes.get("refreshToken");
+
+        // 리프레시 토큰에서 사용자 ID를 추출하여 세션에 저장합니다.
+        session.setAttribute("userId", jwtTokenProvider.getUserIdFromToken(refreshToken));
 
 
         // 리프레시 토큰을 쿠키로 반환합니다.
