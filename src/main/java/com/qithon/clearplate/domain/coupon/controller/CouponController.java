@@ -3,6 +3,7 @@ package com.qithon.clearplate.domain.coupon.controller;
 import com.qithon.clearplate.domain.coupon.dto.request.RegisterCouponRequest;
 import com.qithon.clearplate.domain.coupon.dto.response.RegisterCouponResponse;
 import com.qithon.clearplate.domain.coupon.repository.RegisterCouponRepository;
+import com.qithon.clearplate.domain.coupon.service.GetAllCouponsService;
 import com.qithon.clearplate.domain.coupon.service.RegisterCouponService;
 import com.qithon.clearplate.global.common.dto.response.ResponseDTO;
 import com.qithon.clearplate.global.exception.ErrorCode;
@@ -11,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CouponController {
 
   private final RegisterCouponService registerCouponService;
+  private final GetAllCouponsService getAllCouponsService;
 
 
   @PostMapping
@@ -35,12 +38,12 @@ public class CouponController {
     }
   }
 
-  @GetMapping("/all")
-  public ResponseEntity<?> getAllCoupons() {
+  @GetMapping("/all/{userId}")
+  public ResponseEntity<?> getAllCouponsByUserId(@PathVariable Long userId) {
     try {
-
+      return ResponseEntity.ok().body(ResponseDTO.response(getAllCouponsService.getAllCouponsByUserId(userId)));
     } catch (RuntimeException e) {
-
+      return ResponseEntity.ok().body(ResponseDTO.response(HttpStatus.BAD_REQUEST, e.getMessage(), null));
     }
   }
 

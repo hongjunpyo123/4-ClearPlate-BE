@@ -30,7 +30,6 @@ public class Coupon {
   @Column(length = 100, nullable = false)
   private String couponTitle;
 
-
   @Column(nullable = false, unique = true)
   private String couponCode;
 
@@ -78,7 +77,7 @@ public class Coupon {
       LocalDateTime expiresAt, String couponDescription) {
     return Coupon.builder()
         .couponTitle(couponTitle)
-        .couponCode(getCouponCode())
+        .couponCode(generateCouponCode())
         .couponDescription(couponDescription)
         .couponPrice(couponPrice)
         .couponDiscountValue(couponDiscountValue)
@@ -96,7 +95,7 @@ public class Coupon {
   public static Coupon from(RegisterCouponRequest requestDTO) {
     return Coupon.builder()
         .couponTitle(requestDTO.getCouponTitle())
-        .couponCode(getCouponCode())
+        .couponCode(generateCouponCode())
         .couponDescription(requestDTO.getCouponDescription())
         .couponPrice(requestDTO.getCouponPrice())
         .couponDiscountValue(requestDTO.getCouponDiscountValue())
@@ -110,7 +109,7 @@ public class Coupon {
    *  쿠폰 코드를 생성하는 메서드입니다
    * @return 16자리 랜덤 쿠폰 코드 생성
    */
-  private static String getCouponCode() {
+  public static String generateCouponCode() {
       String characters = "0123456789abcdefghijklmnopqrstuvwxyz";
       SecureRandom random = new SecureRandom();
       StringBuilder sb = new StringBuilder();
