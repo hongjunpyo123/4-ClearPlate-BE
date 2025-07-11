@@ -12,9 +12,16 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOriginPatterns("*")
-                .allowedMethods("*")
-                .allowedHeaders("*")
-                .allowCredentials(true);
+            .allowedOrigins(
+                "http://localhost:8080",
+                "http://localhost:3000",
+                "https://api.clearplate.store",
+                "https://www.clearplate.store",
+                "https://clearplate.vercel.app"
+            )
+            .allowCredentials(true)
+            .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+            .allowedHeaders("*")
+            .maxAge(3600);
     }
 }
