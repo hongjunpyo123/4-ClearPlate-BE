@@ -1,6 +1,8 @@
 package com.qithon.clearplate.domain.CLPRestaurant.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.JoinColumn;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -14,10 +16,13 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class CLPCategory {
 
+  @JsonProperty("category_group_code")
   private String categoryGroupCode;
 
+  @JsonProperty("category_group_name")
   private String categoryGroupName;
 
+  @JsonProperty("category_name")
   private String categoryName;
 
   @Builder
