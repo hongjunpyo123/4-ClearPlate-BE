@@ -16,7 +16,7 @@ public class GeminiController {
 
   private final GeminiClient geminiClient;
 
-  @PostMapping(value = "/gemini", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+  @PostMapping(value = "/gemini/test", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
   public Mono<String> analyze(
       @RequestPart("img1") MultipartFile img1,
       @RequestPart("img2") MultipartFile img2) {
