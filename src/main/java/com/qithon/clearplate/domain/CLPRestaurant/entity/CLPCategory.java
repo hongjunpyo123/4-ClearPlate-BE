@@ -1,6 +1,7 @@
 package com.qithon.clearplate.domain.CLPRestaurant.entity;
 
 import jakarta.persistence.Embeddable;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,5 +19,20 @@ public class CLPCategory {
   private String categoryGroupName;
 
   private String categoryName;
+
+  @Builder
+  private CLPCategory(String categoryGroupCode, String categoryGroupName, String categoryName) {
+    this.categoryGroupCode = categoryGroupCode;
+    this.categoryGroupName = categoryGroupName;
+    this.categoryName = categoryName;
+  }
+
+  public static CLPCategory of(String categoryGroupCode, String categoryGroupName, String categoryName) {
+    return CLPCategory.builder()
+        .categoryGroupCode(categoryGroupCode)
+        .categoryGroupName(categoryGroupName)
+        .categoryName(categoryName)
+        .build();
+  }
 
 }

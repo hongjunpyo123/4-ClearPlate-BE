@@ -1,11 +1,14 @@
 package com.qithon.clearplate.domain.CLPRestaurant.entity;
 
+import com.qithon.clearplate.domain.CLPRestaurant.dto.request.CLPRestaurantRequest;
+
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -18,7 +21,7 @@ public class CLPRestaurant {
   private String addressName;
 
   @Embedded
-  private CLPCategory CLPCategory;
+  private static CLPCategory CLPCategory;
 
   private String distance;
 
@@ -39,6 +42,48 @@ public class CLPRestaurant {
   private String imageUrl;
 
   private String subtitle;
+
+  @Builder
+  private CLPRestaurant(String addressName, CLPCategory clpCategory,
+      String distance, String restaurantId, String phone, String placeName,
+      String placeUrl, String roadAddressName, String x, String y, String imageUrl,String subtitle) {
+    this.addressName = addressName;
+    this.CLPCategory = clpCategory;
+    this.distance = distance;
+    this.restaurantId = restaurantId;
+    this.phone = phone;
+    this.placeName = placeName;
+    this.placeUrl = placeUrl;
+    this.roadAddressName = roadAddressName;
+    this.x = x;
+    this.y = y;
+    this.imageUrl = imageUrl;
+    this.subtitle = subtitle;
+  }
+
+  public static CLPRestaurant from(CLPRestaurantRequest requestDTO) {
+    CLPCategory clpCategory = CLPCategory.of(
+        requestDTO.getCategoryGroupCode(),
+        requestDTO.getCategoryGroupName(),
+        requestDTO.getCategoryName());
+
+    return CLPRestaurant.builder()
+        .addressName(requestDTO.getAddressName())
+        .clpCategory(clpCategory)
+        .distance(requestDTO.getDistance())
+        .restaurantId(requestDTO.getRestaurantId())
+        .phone(requestDTO.getPhone())
+        .placeName(requestDTO.getPlaceName())
+        .placeUrl(requestDTO.getPlaceUrl())
+        .roadAddressName(requestDTO.getRoadAddressName())
+        .x(requestDTO.getX())
+        .y(requestDTO.getY())
+        .imageUrl(requestDTO.getImageUrl())
+        .subtitle(requestDTO.getSubtitle())
+        .build();
+  }
+
+
 
 
 
