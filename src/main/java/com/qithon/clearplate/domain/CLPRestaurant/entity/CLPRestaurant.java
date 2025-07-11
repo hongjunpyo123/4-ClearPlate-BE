@@ -41,4 +41,6 @@ public class CLPRestaurant {
   private String subtitle;
 
 
+
+
 }
