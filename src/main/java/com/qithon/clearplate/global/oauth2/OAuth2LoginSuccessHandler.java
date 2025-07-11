@@ -53,6 +53,6 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
 
 
         // TODO: 소셜로그인이 완료된 후 사용자를 어디로 리다이렉트할지 결정해야 합니다.
-        response.sendRedirect("http://localhost:3000/main");
+        response.sendRedirect("https://www.clearplate.store/main");
     }
 }
