@@ -1,5 +1,6 @@
 package com.qithon.clearplate.global.common.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.time.LocalDateTime;
 import lombok.Getter;
@@ -13,6 +14,8 @@ import org.springframework.http.HttpStatus;
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResponseDTO<T> {
+
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
   private LocalDateTime timestamp = LocalDateTime.now();
   private HttpStatus status;
   private String message;
