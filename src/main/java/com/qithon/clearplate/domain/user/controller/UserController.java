@@ -27,7 +27,7 @@ public class UserController {
       return ResponseEntity.ok().body(ResponseDTO.response(userResponse));
     } catch (RuntimeException e) {
       return ResponseEntity.badRequest().body(
-          ResponseDTO.response(HttpStatus.BAD_REQUEST, e.getMessage(), null));
+          ResponseDTO.response(HttpStatus.BAD_REQUEST, "로그인된 유저가 없습니다.", null));
     }
   }
 
