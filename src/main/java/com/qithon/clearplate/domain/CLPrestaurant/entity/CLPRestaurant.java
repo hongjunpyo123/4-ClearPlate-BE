@@ -24,7 +24,7 @@ public class CLPRestaurant {
   private String addressName;
 
   @Embedded
-  private static CLPCategory CLPCategory;
+  private CLPCategory clpCategory;
 
   private String distance;
 
@@ -51,7 +51,7 @@ public class CLPRestaurant {
       String distance, String restaurantId, String phone, String placeName,
       String placeUrl, String roadAddressName, String x, String y, String imageUrl,String subtitle) {
     this.addressName = addressName;
-    this.CLPCategory = clpCategory;
+    this.clpCategory = clpCategory;
     this.distance = distance;
     this.restaurantId = restaurantId;
     this.phone = phone;
@@ -85,10 +85,5 @@ public class CLPRestaurant {
         .subtitle(requestDTO.getSubtitle())
         .build();
   }
-
-
-
-
-
 
 }

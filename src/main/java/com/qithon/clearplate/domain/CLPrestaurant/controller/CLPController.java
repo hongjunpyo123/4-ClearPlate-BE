@@ -2,6 +2,7 @@ package com.qithon.clearplate.domain.CLPrestaurant.controller;
 
 import com.qithon.clearplate.domain.CLPrestaurant.dto.request.CLPLocationVerifyRequest;
 import com.qithon.clearplate.domain.CLPrestaurant.dto.request.CLPRestaurantRegisterRequest;
+import com.qithon.clearplate.domain.CLPrestaurant.dto.response.CLPLocationVerifyResponse;
 import com.qithon.clearplate.domain.CLPrestaurant.dto.response.CLPRestaurantRegisterResponse;
 import com.qithon.clearplate.domain.CLPrestaurant.entity.CLPRestaurant;
 import com.qithon.clearplate.domain.CLPrestaurant.service.CLPService;
@@ -165,6 +166,64 @@ public class CLPController {
       return ResponseEntity.badRequest()
           .body(ResponseDTO
               .response(HttpStatus.BAD_REQUEST, "레스토랑 조회에 실패하였습니다.", null));
+    }
+  }
+
+
+  @ApiResponse(
+      responseCode = "200",
+      description = "### ✅ 사용자와 레스토랑의 위치가 50m 이내일 때 성공",
+      content = @Content(
+          mediaType = "application/json",
+          schema = @Schema(
+              example = """
+                  {
+                     "timestamp": "2025-07-11T23:36:54.211888",
+                     "data": {
+                       "address_name": "경기 성남시 분당구 판교동 498",
+                       "category_group_code": "FD6",
+                       "category_group_name": "음식점",
+                       "category_name": "음식점 > 일식 > 일식집",
+                       "distance": "0.0",
+                       "id": "26815946",
+                       "phone": "031-702-9317",
+                       "place_name": "긴자 판교점",
+                       "place_url": "http://place.map.kakao.com/26815946",
+                       "road_address_name": "경기 성남시 분당구 판교로 185",
+                       "x": "127.095072999216",
+                       "y": "37.4006401214003",
+                       "image_url": null,
+                       "subtitle": "고급스러운 분위기의 정통 일식"
+                     }
+                   }
+                """
+          )
+      )
+  )
+  @ApiResponse(
+      responseCode = "400",
+      description = "--- \n### ❌ 50m를 초과하는 경우",
+      content = @Content(
+          mediaType = "application/json",
+          schema = @Schema(
+              example = """
+                  {
+                     "timestamp": "2025-07-11T23:38:53.0533",
+                     "status": "BAD_REQUEST",
+                     "message": "레스토랑과 유저 사이의 거리가 50m를 초과합니다. : 88333.7m"
+                   }  
+                 """
+
+          )
+      )
+  )
+  @PostMapping("/verify-location")
+  public ResponseEntity<?> verifyLocation(@RequestBody CLPLocationVerifyRequest request) {
+    try {
+      CLPLocationVerifyResponse response = clpService.verifyLocation(request);
+      return ResponseEntity.ok(ResponseDTO.response(response));
+    } catch (RuntimeException e) {
+      return ResponseEntity.badRequest().body(ResponseDTO.response(HttpStatus.BAD_REQUEST, e.getMessage(), null));
     }
   }
 

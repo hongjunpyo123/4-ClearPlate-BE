@@ -47,7 +47,8 @@ public class Location {
     double radius = 6371000.0;
 
     // 최종 거리 계산
-    return radius * c;
+    Double distance = radius * c;
+    return Math.round(distance * 10.0) / 10.0;
   }
 
 
