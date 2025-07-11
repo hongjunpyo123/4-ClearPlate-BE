@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/clp")
-@Tag(name = "레스토랑을 등록하고 조회하는 api 입니다.", description = "등록된 clp 레스토랑을 조회합니다.")
+@Tag(name = "clp 레스토랑 관련 api 입니다.", description = "등록된 clp 레스토랑을 조회하거나 등록하고, 인증합니다.")
 public class CLPController {
 
   private final CLPService clpService;
