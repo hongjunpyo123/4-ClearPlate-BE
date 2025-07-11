@@ -1,6 +1,6 @@
-package com.qithon.clearplate.domain.CLPRestaurant.repository;
+package com.qithon.clearplate.domain.CLPrestaurant.repository;
 
-import com.qithon.clearplate.domain.CLPRestaurant.entity.CLPRestaurant;
+import com.qithon.clearplate.domain.CLPrestaurant.entity.CLPRestaurant;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 

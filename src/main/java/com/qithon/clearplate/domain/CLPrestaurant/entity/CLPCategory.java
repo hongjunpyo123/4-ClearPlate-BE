@@ -1,8 +1,7 @@
-package com.qithon.clearplate.domain.CLPRestaurant.entity;
+package com.qithon.clearplate.domain.CLPrestaurant.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.JoinColumn;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

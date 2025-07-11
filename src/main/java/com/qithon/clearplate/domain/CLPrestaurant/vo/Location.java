@@ -1,4 +1,4 @@
-package com.qithon.clearplate.domain.CLPRestaurant.vo;
+package com.qithon.clearplate.domain.CLPrestaurant.vo;
 
 import lombok.Builder;
 import lombok.Getter;

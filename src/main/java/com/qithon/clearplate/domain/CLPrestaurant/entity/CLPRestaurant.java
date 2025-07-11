@@ -1,6 +1,6 @@
-package com.qithon.clearplate.domain.CLPRestaurant.entity;
+package com.qithon.clearplate.domain.CLPrestaurant.entity;
 
-import com.qithon.clearplate.domain.CLPRestaurant.dto.request.CLPRestaurantRegisterRequest;
+import com.qithon.clearplate.domain.CLPrestaurant.dto.request.CLPRestaurantRegisterRequest;
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -9,9 +9,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class CLPRestaurant {
 

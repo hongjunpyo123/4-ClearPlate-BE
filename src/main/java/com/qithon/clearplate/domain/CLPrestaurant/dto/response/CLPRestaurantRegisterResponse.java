@@ -1,7 +1,7 @@
-package com.qithon.clearplate.domain.CLPRestaurant.dto.response;
+package com.qithon.clearplate.domain.CLPrestaurant.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.qithon.clearplate.domain.CLPRestaurant.dto.request.CLPRestaurantRegisterRequest;
+import com.qithon.clearplate.domain.CLPrestaurant.dto.request.CLPRestaurantRegisterRequest;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
