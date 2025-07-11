@@ -1,6 +1,6 @@
 package com.qithon.clearplate.domain.CLPRestaurant.entity;
 
-import com.qithon.clearplate.domain.CLPRestaurant.dto.request.CLPRestaurantRequest;
+import com.qithon.clearplate.domain.CLPRestaurant.dto.request.CLPRestaurantRegisterRequest;
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -61,7 +61,7 @@ public class CLPRestaurant {
     this.subtitle = subtitle;
   }
 
-  public static CLPRestaurant from(CLPRestaurantRequest requestDTO) {
+  public static CLPRestaurant from(CLPRestaurantRegisterRequest requestDTO) {
     CLPCategory clpCategory = CLPCategory.of(
         requestDTO.getCategoryGroupCode(),
         requestDTO.getCategoryGroupName(),
