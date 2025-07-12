@@ -7,18 +7,30 @@ import com.qithon.clearplate.domain.CLPrestaurant.dto.response.CLPRestaurantRegi
 import com.qithon.clearplate.domain.CLPrestaurant.entity.CLPRestaurant;
 import com.qithon.clearplate.domain.CLPrestaurant.repository.CLPRepository;
 import com.qithon.clearplate.domain.CLPrestaurant.vo.Location;
+import com.qithon.clearplate.domain.stamp.entity.Stamp;
+import com.qithon.clearplate.domain.stamp.repository.StampRepository;
+import com.qithon.clearplate.domain.user.entity.User;
+import com.qithon.clearplate.domain.user.repository.UserRepository;
+import com.qithon.clearplate.global.security.config.ServletLogin;
+import jakarta.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
 @ToString
 @RequiredArgsConstructor
+@Slf4j
 public class CLPService {
 
   private final CLPRepository clpRepository;
+  private final ServletLogin servletLogin;
+  private final StampRepository stampRepository;
+  private final UserRepository userRepository;
 
   public List<CLPRestaurantRegisterResponse> registerRestaurantList(
       List<CLPRestaurantRegisterRequest> requestDTOs) {
@@ -64,10 +76,25 @@ public class CLPService {
   }
 
 
-  public CLPLocationVerifyResponse verifyLocation(CLPLocationVerifyRequest request) {
+  public CLPLocationVerifyResponse verifyLocation(CLPLocationVerifyRequest request, HttpServletRequest httpServletRequest ) {
     if(clpRepository.findByRestaurantId(request.getRestaurantId()).isPresent()) {
       CLPRestaurant clpRestaurant = clpRepository.findByRestaurantId(request.getRestaurantId())
           .orElseThrow( () -> new RuntimeException("레스토랑을 찾을 수 없습니다."));
+      log.info("레스토랑 정보: {}", clpRestaurant);
+
+      Long userId = servletLogin.extractUserIdFromRefreshToken(httpServletRequest);
+      log.info("유저 ID: {}", userId);
+      User user = userRepository.findById(userId)
+          .orElseThrow(() -> new RuntimeException("사용자를 찾을 수 없습니다."));
+
+
+      Stamp stamp = Stamp.builder()
+          .user(user)
+          .clpRestaurant(clpRestaurant)
+          .createdAt(LocalDateTime.now())
+          .build();
+      stampRepository.save(stamp);
+
 
       //레스토랑 위치 객체
       Location restaurantLocation = Location.of(Double.parseDouble(clpRestaurant.getY()), Double.parseDouble(clpRestaurant.getX()));

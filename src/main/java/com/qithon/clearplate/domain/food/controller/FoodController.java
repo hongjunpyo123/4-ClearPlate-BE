@@ -41,13 +41,11 @@ public class FoodController {
     String result = foodService.vertifyFoods(afterImg, userId);
     return ResponseEntity.ok(result);
   }
-  @Operation(summary = "음식 조회", description = "사용자가 먹은 음식 목록을 조회합니다.")
+  @Operation(summary = "음식 조회", description = "사용자가 먹은 음식 목록을 조회합니다 (사용자가 먹은 시간, 퍼센트를 리스트로 줍니다. ).")
   @GetMapping("/list")
-  public ResponseEntity<List<FoodResponseDto>> getFoodList(HttpServletRequest request) {
+  public ResponseEntity<List<List<FoodResponseDto>>> getFoodList(HttpServletRequest request) {
     Long userId = servletLogin.extractUserIdFromRefreshToken(request);
     return ResponseEntity.ok(foodService.getFoodList(userId));
   }
-
-
 
 }
