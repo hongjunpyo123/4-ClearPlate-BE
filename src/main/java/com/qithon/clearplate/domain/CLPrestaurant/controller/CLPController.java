@@ -13,6 +13,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -388,9 +389,9 @@ public class CLPController {
     )
     @Operation(summary = "CLP 레스토랑 qr 인증 api", description = "유저의 위경도값과 레스토랑의 id 값을 넣어주세요. / 레스토랑과 유저 사이의 거리가 50m 이내일 때 성공합니다.")
     @PostMapping("/verify-location")
-    public ResponseEntity<?> verifyLocation (@RequestBody CLPLocationVerifyRequest request){
+    public ResponseEntity<?> verifyLocation (@RequestBody CLPLocationVerifyRequest request, HttpServletRequest httpServletRequest) {
       try {
-        CLPLocationVerifyResponse response = clpService.verifyLocation(request);
+        CLPLocationVerifyResponse response = clpService.verifyLocation(request, httpServletRequest);
         return ResponseEntity.ok(ResponseDTO.response(response));
       } catch (RuntimeException e) {
         return ResponseEntity.badRequest()

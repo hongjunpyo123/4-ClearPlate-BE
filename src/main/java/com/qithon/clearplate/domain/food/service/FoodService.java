@@ -16,6 +16,7 @@ import java.util.Base64;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -90,10 +91,12 @@ public class FoodService {
     return matcher.find() ? matcher.group(1) : null;
   }
 
-  public List<FoodResponseDto> getFoodList(Long userId) {
+  public List<List<FoodResponseDto>> getFoodList(Long userId) {
     List<Food> foodList = foodRepository.findAllByUserIdOrderByBeforeEatTimeDesc(userId);
     return foodList.stream()
         .map(FoodResponseDto::from)
-        .toList();
+        .collect(Collectors.groupingBy(dto -> dto.getAfterEatTime().toLocalDate()))
+        .values().stream()
+        .collect(Collectors.toList());
   }
 }
