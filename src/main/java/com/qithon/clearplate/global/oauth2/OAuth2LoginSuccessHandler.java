@@ -42,7 +42,9 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
         Cookie refreshTokenCookie = new Cookie("refreshToken", refreshToken);
         refreshTokenCookie.setHttpOnly(true);
         refreshTokenCookie.setSecure(true);
+
         refreshTokenCookie.setDomain("clearplate.store"); // 배포에서는 풀고 테스트 시에는 주석 해야함
+
         refreshTokenCookie.setPath("/");
         response.addCookie(refreshTokenCookie);
         // TODO: 소셜로그인이 완료된 후 사용자를 어디로 리다이렉트할지 결정해야 합니다.
