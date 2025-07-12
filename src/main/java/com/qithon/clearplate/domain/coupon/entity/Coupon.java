@@ -43,7 +43,7 @@ public class Coupon {
 
   private LocalDateTime expiresAt;    // 만료일
 
-  private LocalDateTime usedAt;       // 사용일 (null이면 미사용)
+  private Boolean isUsed;
 
   @ManyToOne(fetch = jakarta.persistence.FetchType.LAZY)
   @JoinColumn(name = "user_id")
@@ -51,14 +51,14 @@ public class Coupon {
 
   @Builder
   private Coupon(String couponTitle, String couponCode, String couponDescription,
-      Integer couponDiscountValue, LocalDateTime expiresAt, User user) {
+      Integer couponDiscountValue, LocalDateTime expiresAt, Boolean isUsed, User user) {
     this.couponTitle = couponTitle;
     this.couponCode = couponCode;
     this.couponDescription = couponDescription;
     this.couponDiscountValue = couponDiscountValue;
     this.user = user;
     this.expiresAt = expiresAt;
-    this.usedAt = null;
+    this.isUsed = isUsed;
   }
 
   /**
@@ -72,7 +72,7 @@ public class Coupon {
    * @return 생성된 Coupon 객체
    */
   public static Coupon createCouponOf(String couponTitle, Integer couponDiscountValue,
-      LocalDateTime expiresAt, String couponDescription, User user) {
+      LocalDateTime expiresAt, String couponDescription, Boolean isUsed, User user) {
     return Coupon.builder()
         .couponTitle(couponTitle)
         .couponCode(generateCouponCode())
@@ -80,6 +80,7 @@ public class Coupon {
         .couponDiscountValue(couponDiscountValue)
         .expiresAt(expiresAt)
         .user(user)
+        .isUsed(isUsed)
         .build();
   }
 
@@ -96,6 +97,7 @@ public class Coupon {
         .couponDescription(requestDTO.getCouponDescription())
         .couponDiscountValue(requestDTO.getCouponDiscountValue())
         .expiresAt(requestDTO.getExpiresAt())
+        .isUsed(requestDTO.getIsUsed())
         .user(null)
         .build();
   }
