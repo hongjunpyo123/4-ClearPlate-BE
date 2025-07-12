@@ -77,7 +77,7 @@ public class OAuth2UserService extends DefaultOAuth2UserService {
                     return userRepository.save(User.createStandardUserOf(
                         socialEmail,
                         nickname,
-                        0L
+                        10000L
                     ));   // 회원가입 저장
                 });
 

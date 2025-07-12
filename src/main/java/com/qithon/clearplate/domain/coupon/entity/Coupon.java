@@ -36,8 +36,6 @@ public class Coupon {
   @Column(length = 100)
   private String couponDescription;
 
-  private Integer couponPrice;
-
   private Integer couponDiscountValue; // 할인 금액
 
   @CreatedDate
@@ -52,12 +50,11 @@ public class Coupon {
   private User user;
 
   @Builder
-  private Coupon(String couponTitle, String couponCode, String couponDescription, Integer couponPrice
-  , Integer couponDiscountValue, LocalDateTime expiresAt, User user) {
+  private Coupon(String couponTitle, String couponCode, String couponDescription,
+      Integer couponDiscountValue, LocalDateTime expiresAt, User user) {
     this.couponTitle = couponTitle;
     this.couponCode = couponCode;
     this.couponDescription = couponDescription;
-    this.couponPrice = couponPrice;
     this.couponDiscountValue = couponDiscountValue;
     this.user = user;
     this.expiresAt = expiresAt;
@@ -66,23 +63,23 @@ public class Coupon {
 
   /**
    * 쿠폰을 생성하는 정적 팩토리 메서드입니다.
-   * @param couponTitle 쿠폰 제목
-   * @param couponPrice 쿠폰 가격
+   *
+   * @param couponTitle         쿠폰 제목
    * @param couponDiscountValue 쿠폰 할인 금액
-   * @param expiresAt 쿠폰 만료일
-   * @param couponDescription 쿠폰 설명
+   * @param expiresAt           쿠폰 만료일
+   * @param couponDescription   쿠폰 설명
+   * @param user
    * @return 생성된 Coupon 객체
    */
-  public static Coupon createCouponOf(String couponTitle, Integer couponPrice, Integer couponDiscountValue,
-      LocalDateTime expiresAt, String couponDescription) {
+  public static Coupon createCouponOf(String couponTitle, Integer couponDiscountValue,
+      LocalDateTime expiresAt, String couponDescription, User user) {
     return Coupon.builder()
         .couponTitle(couponTitle)
         .couponCode(generateCouponCode())
         .couponDescription(couponDescription)
-        .couponPrice(couponPrice)
         .couponDiscountValue(couponDiscountValue)
         .expiresAt(expiresAt)
-        .user(null)
+        .user(user)
         .build();
   }
 
@@ -97,7 +94,6 @@ public class Coupon {
         .couponTitle(requestDTO.getCouponTitle())
         .couponCode(generateCouponCode())
         .couponDescription(requestDTO.getCouponDescription())
-        .couponPrice(requestDTO.getCouponPrice())
         .couponDiscountValue(requestDTO.getCouponDiscountValue())
         .expiresAt(requestDTO.getExpiresAt())
         .user(null)

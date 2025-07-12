@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -72,9 +73,9 @@ public class CouponController {
   )
   @Operation(summary = "쿠폰을 생성하는 api", description = "쿠폰을 생성합니다. (쿠폰 코드 자동 생성)")
   @PostMapping
-  public ResponseEntity<?> registerCoupon(@RequestBody RegisterCouponRequest requestDTO) {
+  public ResponseEntity<?> registerCoupon(@RequestBody RegisterCouponRequest requestDTO, HttpServletRequest request) {
     try {
-      RegisterCouponResponse response = registerCouponService.registerCoupon(requestDTO);
+      RegisterCouponResponse response = registerCouponService.registerCoupon(requestDTO, request);
       return ResponseEntity.ok().body(ResponseDTO.response(response));
     } catch (RuntimeException e) {
       return ResponseEntity.badRequest()
