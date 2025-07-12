@@ -34,7 +34,7 @@ public class User {
   private String nickname;
 
   @Column(nullable = false)
-  private Integer cpPoint;
+  private Long cpPoint= 0L;
 
 
   @Enumerated(EnumType.STRING) // admin, user, owner
@@ -44,7 +44,7 @@ public class User {
   private List<Coupon> coupons = new ArrayList<>();
 
   @Builder
-  private User(String socialEmail, String nickname, Integer cpPoint, Role role,
+  private User(String socialEmail, String nickname, Long cpPoint, Role role,
       List<Coupon> coupons) {
     this.socialEmail = socialEmail;
     this.nickname = nickname;
@@ -60,7 +60,7 @@ public class User {
    * @param cpPoint  서비스에서 사용되는 포인트 입니다
    * @return 생성된 User 객체
    */
-  public static User createStandardUserOf(String socialEmail, String nickname, Integer cpPoint) {
+  public static User createStandardUserOf(String socialEmail, String nickname, Long cpPoint) {
     return User.builder()
         .socialEmail(socialEmail)
         .nickname(nickname)
@@ -78,7 +78,7 @@ public class User {
    * @return 생성된 User 객체
    */
   //TODO: 쿠폰 연관관계 매핑 후 메서드 인자로 쿠폰 객체를 추가해야함.
-  public static User createOwnerUserOf(String socialEmail, String nickname, Integer cpPoint) {
+  public static User createOwnerUserOf(String socialEmail, String nickname, Long cpPoint) {
     return User.builder()
         .socialEmail(socialEmail)
         .nickname(nickname)
@@ -96,7 +96,7 @@ public class User {
    * @return 생성된 User 객체
    */
   //TODO: 쿠폰 연관관계 매핑 후 메서드 인자로 쿠폰 객체를 추가해야함.
-  public static User createAdminUserOf(String socialEmail, String nickname, Integer cpPoint) {
+  public static User createAdminUserOf(String socialEmail, String nickname, Long cpPoint) {
     return User.builder()
         .socialEmail(socialEmail)
         .nickname(nickname)
@@ -105,5 +105,12 @@ public class User {
         .coupons(null)
         .build();
 
+  }
+
+  public void addPoint(Long value) {
+    if (this.cpPoint == null) {
+      this.cpPoint = 10L; // 기본 포인트 설정
+    }
+    this.cpPoint += value;
   }
 }

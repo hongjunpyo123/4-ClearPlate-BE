@@ -15,7 +15,6 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 @Getter
 @Table
@@ -37,7 +36,7 @@ public class Food {
   private LocalDateTime afterEatTime;
 
   @Column
-  private String seftPercentage;
+  private String leftPercentage;
 
   @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
   private Boolean isVerified;
@@ -49,17 +48,17 @@ public class Food {
 
   @Builder
   public Food(String foodImageUrl, LocalDateTime beforeEatTime, LocalDateTime afterEatTime,
-      String seftPercentage, Boolean isVerified, User user) {
+      String leftPercentage, Boolean isVerified, User user) {
     this.foodImageUrl = foodImageUrl;
     this.beforeEatTime = beforeEatTime;
     this.afterEatTime = afterEatTime;
-    this.seftPercentage = seftPercentage;
+    this.leftPercentage = leftPercentage;
     this.isVerified = isVerified;
     this.user = user;
   }
   public void updateAfterEatInfo(String afterImageUrl, String seftPercentage, LocalDateTime afterEatTime, Boolean isVerified) {
     this.foodImageUrl = afterImageUrl;
-    this.seftPercentage = seftPercentage;
+    this.leftPercentage = seftPercentage;
     this.afterEatTime = afterEatTime;
     this.isVerified = isVerified;
   }
