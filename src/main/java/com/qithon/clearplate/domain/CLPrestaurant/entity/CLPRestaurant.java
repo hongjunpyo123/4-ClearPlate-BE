@@ -2,6 +2,7 @@ package com.qithon.clearplate.domain.CLPrestaurant.entity;
 
 import com.qithon.clearplate.domain.CLPrestaurant.dto.request.CLPRestaurantRegisterRequest;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -42,6 +43,7 @@ public class CLPRestaurant {
 
   private String y;
 
+  @Column(length = 1000)
   private String imageUrl;
 
   private String subtitle;
