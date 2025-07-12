@@ -18,7 +18,7 @@ public class UserResponse {
   private Long id;
   private String socialEmail;
   private String nickname;
-  private Integer cpPoint;
+  private Long cpPoint;
 
   public static UserResponse from(User user) {
     return UserResponse.builder()

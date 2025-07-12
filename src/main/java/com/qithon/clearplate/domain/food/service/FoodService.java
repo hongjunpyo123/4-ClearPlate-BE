@@ -17,11 +17,13 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class FoodService {
   private final FoodRepository foodRepository;
   private final UserRepository userRepository;
@@ -60,6 +62,11 @@ public class FoodService {
     String analyzeResult = geminiClient.analyzeImages(beforeBase64, afterBase64).block();
 
     String percentage = extractPercentage(analyzeResult);
+    User user = userRepository.findById(userId)
+        .orElseThrow(() -> new IllegalArgumentException("해당 유저가 존재하지 않습니다."));
+    user.addPoint(Long.parseLong(percentage));
+    log.info("사용자 {}의 포인트가 {}만큼 증가했습니다.", user.getNickname(), percentage);
+    userRepository.save(user);
 
     beforeFood.updateAfterEatInfo(afterImageUrl, percentage, LocalDateTime.now(), true);
 
