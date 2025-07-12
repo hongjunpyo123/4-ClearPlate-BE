@@ -93,6 +93,19 @@ public class CLPController {
 
 
 
+  @GetMapping("/search/{keyword}")
+  public ResponseEntity<?> searchRestaurant(@PathVariable String keyword) {
+    try {
+
+    } catch (RuntimeException e) {
+
+    }
+  }
+
+
+
+
+
   @ApiResponse(
       responseCode = "200",
       description = "### ✅ 현재 등록된 CLP 레스토랑을 전부 조회합니다.",
