@@ -96,7 +96,7 @@ public class CLPController {
   @GetMapping("/search/{keyword}")
   public ResponseEntity<?> searchRestaurant(@PathVariable String keyword) {
     try {
-
+      List<CLPRestaurant> response = clpService.searchRestaurant(keyword);
     } catch (RuntimeException e) {
 
     }
