@@ -38,15 +38,16 @@ public class FoodController {
   @PostMapping(value = "/verify", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
   public ResponseEntity<String> verifyFoods(@RequestPart("afterimg") MultipartFile afterImg, HttpServletRequest request) {
     Long userId = servletLogin.extractUserIdFromRefreshToken(request);
-
     String result = foodService.vertifyFoods(afterImg, userId);
     return ResponseEntity.ok(result);
   }
-  @Operation(summary = "음식 조회", description = "사용자가 먹은 음식의 사진을 조회합니다.")
+  @Operation(summary = "음식 조회", description = "사용자가 먹은 음식 목록을 조회합니다.")
   @GetMapping("/list")
-  public ResponseEntity<List<FoodResponseDto>> getFoodList(@AuthenticationPrincipal CustomUserDetails user) {
-    return ResponseEntity.ok(foodService.getFoodList(user.getId()));
+  public ResponseEntity<List<FoodResponseDto>> getFoodList(HttpServletRequest request) {
+    Long userId = servletLogin.extractUserIdFromRefreshToken(request);
+    return ResponseEntity.ok(foodService.getFoodList(userId));
   }
+
 
 
 }
