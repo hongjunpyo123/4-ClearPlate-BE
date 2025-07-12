@@ -44,8 +44,9 @@ public class User {
   private List<Coupon> coupons = new ArrayList<>();
 
   @Builder
-  private User(String socialEmail, String nickname, Long cpPoint, Role role,
+  private User(Long id, String socialEmail, String nickname, Long cpPoint, Role role,
       List<Coupon> coupons) {
+    this.id = id;
     this.socialEmail = socialEmail;
     this.nickname = nickname;
     this.cpPoint = cpPoint;
@@ -62,6 +63,7 @@ public class User {
    */
   public static User createStandardUserOf(String socialEmail, String nickname, Long cpPoint) {
     return User.builder()
+        .id(null)
         .socialEmail(socialEmail)
         .nickname(nickname)
         .cpPoint(cpPoint)
@@ -80,6 +82,7 @@ public class User {
   //TODO: 쿠폰 연관관계 매핑 후 메서드 인자로 쿠폰 객체를 추가해야함.
   public static User createOwnerUserOf(String socialEmail, String nickname, Long cpPoint) {
     return User.builder()
+        .id(null)
         .socialEmail(socialEmail)
         .nickname(nickname)
         .cpPoint(cpPoint)
@@ -98,6 +101,7 @@ public class User {
   //TODO: 쿠폰 연관관계 매핑 후 메서드 인자로 쿠폰 객체를 추가해야함.
   public static User createAdminUserOf(String socialEmail, String nickname, Long cpPoint) {
     return User.builder()
+        .id(null)
         .socialEmail(socialEmail)
         .nickname(nickname)
         .cpPoint(cpPoint)
