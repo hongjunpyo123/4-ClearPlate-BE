@@ -7,6 +7,7 @@ import com.qithon.clearplate.domain.CLPrestaurant.dto.response.CLPRestaurantRegi
 import com.qithon.clearplate.domain.CLPrestaurant.entity.CLPRestaurant;
 import com.qithon.clearplate.domain.CLPrestaurant.repository.CLPRepository;
 import com.qithon.clearplate.domain.CLPrestaurant.vo.Location;
+import java.util.stream.Collectors;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
@@ -34,6 +35,17 @@ public class CLPService {
     List<CLPRestaurant> clpRestaurants = clpRepository.findAll();
 
     return clpRestaurants;
+  }
+
+  public List<CLPRestaurant> getAllRestaurantsByLocation(Location userlocation, Double distance) throws RuntimeException {
+      List<CLPRestaurant> clpRestaurants = clpRepository.findAll();
+
+      List<CLPRestaurant> filteredRestaurants = clpRestaurants.stream()
+          .filter(restaurant -> Location
+              .calculateDistanceInMeters(userlocation, Location.of(restaurant.getY(), restaurant.getX())) <= distance)
+          .collect(Collectors.toList());
+
+      return filteredRestaurants;
   }
 
 

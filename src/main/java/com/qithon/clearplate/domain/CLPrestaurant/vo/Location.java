@@ -2,8 +2,12 @@ package com.qithon.clearplate.domain.CLPrestaurant.vo;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
+@NoArgsConstructor
 public class Location {
 
   @Builder
@@ -20,6 +24,10 @@ public class Location {
         .latitude(latitude)
         .longitude(longitude)
         .build();
+  }
+
+  public static Location of(String latitude, String longitude) {
+    return Location.of(Double.parseDouble(latitude), Double.parseDouble(longitude));
   }
 
 
