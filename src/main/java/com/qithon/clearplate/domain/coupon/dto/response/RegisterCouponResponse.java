@@ -10,12 +10,10 @@ import lombok.Setter;
 public class RegisterCouponResponse {
 
   private String couponTitle;
-  private Integer couponPrice; //쿠폰 가격(교환시 소모되는 포인트임)
 
-  public static RegisterCouponResponse of(String couponTitle, Integer couponPrice) {
+  public static RegisterCouponResponse of(String couponTitle) {
     return RegisterCouponResponse.builder()
         .couponTitle(couponTitle)
-        .couponPrice(couponPrice)
         .build();
   }
 }

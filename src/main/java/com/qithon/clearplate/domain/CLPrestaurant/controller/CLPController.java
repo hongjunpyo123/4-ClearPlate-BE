@@ -92,8 +92,6 @@ public class CLPController {
   }
 
 
-
-
   @ApiResponse(
       responseCode = "200",
       description = "### ✅ 레스토랑 검색에 성공한 경우",
