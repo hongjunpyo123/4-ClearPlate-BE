@@ -17,6 +17,9 @@ public class SwaggerConfig {
   @Bean
   public OpenAPI openAPI() {
     return new OpenAPI()
+        .servers(List.of(
+            new Server().url("https://api.clearplate.store")
+        ))
         .components(new Components()
             .addSecuritySchemes("bearerAuth",
                 new SecurityScheme()
