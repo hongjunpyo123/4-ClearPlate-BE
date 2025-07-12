@@ -43,7 +43,7 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
         refreshTokenCookie.setHttpOnly(true);
         refreshTokenCookie.setSecure(true);
 
-        refreshTokenCookie.setDomain(".clearplate.store"); // 배포에서는 풀고 테스트 시에는 주석 해야함
+        refreshTokenCookie.setDomain("clearplate.store"); // 배포에서는 풀고 테스트 시에는 주석 해야함
         refreshTokenCookie.setAttribute("SameSite", "None");
 
         refreshTokenCookie.setPath("/");
