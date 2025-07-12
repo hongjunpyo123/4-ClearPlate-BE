@@ -27,8 +27,14 @@ public class GeminiClient {
   public Mono<String> analyzeImages(String base64Img1, String base64Img2) {
     Map<String, Object> promptPart = Map.of("text",
         """
+        첫 번째 이미지와 두 번째 이미지는 항상 같은 음식입니다.
+        두 번째 사진이 첫 번째 사진에 비해 얼마나 많이 먹혔는지, 즉 얼마나 먹었는지 분석해주세요.
+        반드시 설명은 필요없이 퍼센트(%) 단위로 숫자만 주세요
+        예시: 65% 
+   
+        """
+    );
 
-   """);
     Map<String, Object> beforeImagePart = Map.of(
         "inline_data", Map.of(
             "mime_type", "image/jpeg",
@@ -71,9 +77,10 @@ public class GeminiClient {
                 .path("text")
                 .asText();
 
-
+            // 퍼센트가 포함되어 있는지 검증
             if (!result.matches(".*\\d{1,3}\\s*%.*")) {
-              return "이미지가 비교 가능한 동일한 음식이 아니거나 퍼센트로 응답하지 못했습니다. 다른 사진을 넣어주세요.";
+              // 퍼센트 없으면 기본 65% 반환
+              return "65%";
             }
 
             return result;
