@@ -93,12 +93,63 @@ public class CLPController {
 
 
 
+
+  @ApiResponse(
+      responseCode = "200",
+      description = "### ✅ 레스토랑 검색에 성공한 경우",
+      content = @Content(
+          mediaType = "application/json",
+          schema = @Schema(
+              example = """
+                {
+                    "timestamp": "2025-07-11T17:02:04.596431",
+                    "data": [
+                        {
+                            "address_name": "경기 성남시 분당구 백현동 537",
+                            "category_group_code": "FD6",
+                            "category_group_name": "음식점",
+                            "category_name": "음식점 > 샤브샤브",
+                            "distance": "",
+                            "id": "1876658997",
+                            "phone": "031-622-7179",
+                            "place_name": "제이스팟 알파돔타워",
+                            "place_url": "http://place.map.kakao.com/1876658997",
+                            "road_address_name": "경기 성남시 분당구 판교역로 152",
+                            "x": "127.11054127228883",
+                            "y": "37.394487112883404",
+                            "image_url": null,
+                            "subtitle": "따뜻한 국물이 일품인 샤브샤브 전문점"
+                        }
+                    ]
+                }
+                """
+          )
+      )
+  )
+  @ApiResponse(
+      responseCode = "400",
+      description = "--- \n### ❌ 레스토랑 검색에 실패한 경우",
+      content = @Content(
+          mediaType = "application/json",
+          schema = @Schema(
+              example = """
+                  {
+                    "timestamp": "2025-07-11T00:30:38.405707",
+                    "status": "BAD_REQUEST",
+                    "message": "레스토랑 등록에 실패하였습니다."
+                  }  
+                 """
+
+          )
+      )
+  )
   @GetMapping("/search/{keyword}")
   public ResponseEntity<?> searchRestaurant(@PathVariable String keyword) {
     try {
       List<CLPRestaurant> response = clpService.searchRestaurant(keyword);
+      return ResponseEntity.ok(ResponseDTO.response(response));
     } catch (RuntimeException e) {
-
+      return ResponseEntity.badRequest().body(ResponseDTO.response(HttpStatus.BAD_REQUEST, "검색중 오류가 발생하였습니다.", null));
     }
   }
 

@@ -53,6 +53,16 @@ public class CLPService {
       return filteredRestaurants;
   }
 
+  public List<CLPRestaurant> searchRestaurant(String keyword) throws RuntimeException {
+    List<CLPRestaurant> clpRestaurants = clpRepository.findAll();
+
+    List<CLPRestaurant> filteredRestaurants = clpRestaurants.stream()
+        .filter(restaurant -> restaurant.getPlaceName().contains(keyword) || restaurant.getAddressName().contains(keyword))
+        .collect(Collectors.toList());
+
+    return filteredRestaurants;
+  }
+
 
   public CLPLocationVerifyResponse verifyLocation(CLPLocationVerifyRequest request) {
     if(clpRepository.findByRestaurantId(request.getRestaurantId()).isPresent()) {
