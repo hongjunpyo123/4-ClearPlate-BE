@@ -81,13 +81,16 @@ public class OAuth2UserService extends DefaultOAuth2UserService {
                     ));   // 회원가입 저장
                 });
 
+      System.out.println("user.getId() = " + user.getId());
+      System.out.println("user = " + user.getNickname());
+
         // 시큐리티에서 사용할 인증 객체 생성
         CustomUserDetails customUserDetails = new CustomUserDetails(user);
         Authentication authentication =
                 new UsernamePasswordAuthenticationToken(
                         customUserDetails,
                         null,
-                        Collections.singleton(new SimpleGrantedAuthority(user.getRole().name())));
+                        Collections.singleton(new SimpleGrantedAuthority("ROLE_USER")));
 
 
         // JWT 액세스 & 리프레시 토큰 발급
