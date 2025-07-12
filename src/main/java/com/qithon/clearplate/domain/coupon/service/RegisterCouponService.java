@@ -33,7 +33,7 @@ public class RegisterCouponService {
     }
 
     Coupon coupon = Coupon.createCouponOf(requestDTO.getCouponTitle(), requestDTO.getCouponDiscountValue(),
-        requestDTO.getExpiresAt(), requestDTO.getCouponDescription(), user);
+        requestDTO.getExpiresAt(), requestDTO.getCouponDescription(), requestDTO.getIsUsed(), user);
     registerCouponRepository.save(coupon);
     return RegisterCouponResponse.of(coupon.getCouponTitle());
   }
