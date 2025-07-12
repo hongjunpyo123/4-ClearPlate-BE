@@ -59,6 +59,7 @@ public class SecurityConfig {
             .requestMatchers("/coupon/**").permitAll()
             .requestMatchers("/clp/**").permitAll()
             .requestMatchers("/user/**", "/gemini/**", "/aws/**").permitAll()
+            .requestMatchers("/food/**").permitAll()
             .anyRequest().authenticated()
         )
         .exceptionHandling(e -> e
