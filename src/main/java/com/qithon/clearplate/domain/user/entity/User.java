@@ -34,7 +34,7 @@ public class User {
   private String nickname;
 
   @Column(nullable = false)
-  private Long cpPoint= 0L;
+  private Long cpPoint= 10000L;
 
 
   @Enumerated(EnumType.STRING) // admin, user, owner
