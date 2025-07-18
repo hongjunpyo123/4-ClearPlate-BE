@@ -159,28 +159,21 @@ java -jar ../clearplate-0.0.1-SNAPSHOT.jar
 현재 서비스는 해커톤 이후로 중단되었습니다.
 
 ### 스크린샷
-![앱 아이콘](https://github.com/user-attachments/assets/58a2f0d1-74b0-4711-9cbc-c1d5625ada92)
-![로그인 화면](https://github.com/user-attachments/assets/3b63604d-5bfb-467f-aad9-82509b6f521b)
-![메인 화면-1](https://github.com/user-attachments/assets/ce20614a-84de-4bc0-81c3-e64c02e35ca8)
-![메인 화면-2](https://github.com/user-attachments/assets/a7945644-f1e2-4887-b398-5054a23be0ca)
-![메인 화면-3](https://github.com/user-attachments/assets/08003a80-6a44-46cd-a937-f2940693eabd)
-![식당 검색-1](https://github.com/user-attachments/assets/35b72ac2-b13d-4938-9b81-decb5eeccbfe)
-![식당 검색-2](https://github.com/user-attachments/assets/fa491809-9378-4043-b1a6-8b6e64ddae73)
-![식당 QR 인증](https://github.com/user-attachments/assets/8f4cabce-4071-4245-bb26-4aa1b1722564)
-![QR 인증 완료](https://github.com/user-attachments/assets/3cd3aa33-8bea-4b25-8d1b-98cf3f752504)
-![사진 업로드-1](https://github.com/user-attachments/assets/58f83764-b35f-4246-b03d-ee2739139aaf)
-![사진 업로드-2](https://github.com/user-attachments/assets/df118241-5807-49ac-8d2a-5dabffcf4bef)
-![사진 업로드-3](https://github.com/user-attachments/assets/7f6b2518-01fc-4f09-9d32-506616527dda)
-![완식률 분석-1](https://github.com/user-attachments/assets/d33d2f56-0367-451b-aff4-f82faaf93655)
-![완식률 분석-2](https://github.com/user-attachments/assets/3eb6df21-c4c5-4425-adbe-cb79e9951568)
-![마이페이지](https://github.com/user-attachments/assets/30673109-2c9b-4358-bfe2-710e433c2656)
-![쿠폰함](https://github.com/user-attachments/assets/0ccaf618-86d4-40ea-b8cb-f26da449f70)
-![쿠폰 상세](https://github.com/user-attachments/assets/b727fe20-f82c-4e4d-8029-9f0e6d2e69b0)
-![포인트 내역](https://github.com/user-attachments/assets/d8fd9128-ee26-4c3f-8e18-7314a56eb7b1)
-![포인트 사용-1](https://github.com/user-attachments/assets/6cf704af-5594-4356-8a57-e05a05c9256f)
-![포인트 사용-2](https://github.com/user-attachments/assets/cd4b0598-e722-437a-b0c5-e0ea1efe3307)
-![포인트 사용-3](https://github.com/user-attachments/assets/38d0fc06-48f2-45b4-a720-55e6e2006f89)
-![포인트 사용-4](https://github.com/user-attachments/assets/ef756a59-0f16-4d78-82f0-c2de8246a5ba)
+### 스크린샷
+| 기능 | 화면 |
+|------|------|
+| **앱 아이콘 & 로그인** | <img src="https://github.com/user-attachments/assets/58a2f0d1-74b0-4711-9cbc-c1d5625ada92" width="150"> <img src="https://github.com/user-attachments/assets/3b63604d-5bfb-467f-aad9-82509b6f521b" width="150"> |
+| **메인 화면** | <img src="https://github.com/user-attachments/assets/ce20614a-84de-4bc0-81c3-e64c02e35ca8" width="150"> <img src="https://github.com/user-attachments/assets/a7945644-f1e2-4887-b398-5054a23be0ca" width="150"> |
+| **메인 화면 (추가)** | <img src="https://github.com/user-attachments/assets/08003a80-6a44-46cd-a937-f2940693eabd" width="150"> |
+| **식당 검색** | <img src="https://github.com/user-attachments/assets/35b72ac2-b13d-4938-9b81-decb5eeccbfe" width="150"> <img src="https://github.com/user-attachments/assets/fa491809-9378-4043-b1a6-8b6e64ddae73" width="150"> |
+| **QR 인증** | <img src="https://github.com/user-attachments/assets/8f4cabce-4071-4245-bb26-4aa1b1722564" width="150"> <img src="https://github.com/user-attachments/assets/3cd3aa33-8bea-4b25-8d1b-98cf3f752504" width="150"> |
+| **사진 업로드** | <img src="https://github.com/user-attachments/assets/58f83764-b35f-4246-b03d-ee2739139aaf" width="150"> <img src="https://github.com/user-attachments/assets/df118241-5807-49ac-8d2a-5dabffcf4bef" width="150"> |
+| **사진 업로드 (완료)** | <img src="https://github.com/user-attachments/assets/7f6b2518-01fc-4f09-9d32-506616527dda" width="150"> |
+| **완식률 분석** | <img src="https://github.com/user-attachments/assets/d33d2f56-0367-451b-aff4-f82faaf93655" width="150"> <img src="https://github.com/user-attachments/assets/3eb6df21-c4c5-4425-adbe-cb79e9951568" width="150"> |
+| **마이페이지 & 쿠폰함** | <img src="https://github.com/user-attachments/assets/30673109-2c9b-4358-bfe2-710e433c2656" width="150"> <img src="https://github.com/user-attachments/assets/0ccaf618-86d4-40ea-b8cb-f26da449f70" width="150"> |
+| **쿠폰 상세 & 포인트 내역** | <img src="https://github.com/user-attachments/assets/b727fe20-f82c-4e4d-8029-9f0e6d2e69b0" width="150"> <img src="https://github.com/user-attachments/assets/d8fd9128-ee26-4c3f-8e18-7314a56eb7b1" width="150"> |
+| **포인트 사용 (1)** | <img src="https://github.com/user-attachments/assets/6cf704af-5594-4356-8a57-e05a05c9256f" width="150"> <img src="https://github.com/user-attachments/assets/cd4b0598-e722-437a-b0c5-e0ea1efe3307" width="150"> |
+| **포인트 사용 (2)** | <img src="https://github.com/user-attachments/assets/38d0fc06-48f2-45b4-a720-55e6e2006f89" width="150"> <img src="https://github.com/user-attachments/assets/ef756a59-0f16-4d78-82f0-c2de8246a5ba" width="150"> |
 
 
 
@@ -305,3 +298,8 @@ clearplate/
 ### 개선할 점
 - 제출 5분전에 CI/CD 파이프라인이 갑자기 먹통되는 이슈가 발생했다. 아직도 이 이유를 찾지 못했고 제출 시간이 지나고 나서 다시 한번 시도했을 때 동작하였다.
 - 절대 제출 5분전에 뭔가를 하려고 하지말자.. 도저히 수습이 안된다
+---
+<img width="1274" height="717" alt="스크린샷 2025-07-18 오후 10 38 44" src="https://github.com/user-attachments/assets/cf3bd071-7fe9-4ac1-bcbc-94cebc5ba655" />
+<img width="1274" height="717" alt="스크린샷 2025-07-18 오후 10 39 18" src="https://github.com/user-attachments/assets/16f63e58-7e6f-4ab1-8bfc-6f1c398daef9" />
+<img width="1274" height="717" alt="스크린샷 2025-07-18 오후 10 39 39" src="https://github.com/user-attachments/assets/7c757e22-cc3b-4a1e-bb4e-d5a6c269dd50" />
+<img width="1274" height="717" alt="스크린샷 2025-07-18 오후 10 40 26" src="https://github.com/user-attachments/assets/5c8b83be-7296-49ce-bfb1-72fd179e35eb" />
